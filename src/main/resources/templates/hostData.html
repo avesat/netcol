@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Host Data</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Host Data</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Request Id</th>
+            <th>Host IP Address</th>
+            <th>Login</th>
+            <th>Password</th>
+        </tr>
+        <tr>
+            <td th:utext="${ipHost.requestId}">...</td>
+            <td th:utext="${ipHost.ipAddress}">...</td>
+            <td th:utext="${ipHost.user}">...</td>
+            <td th:utext="${ipHost.password}">...</td>
+        </tr>
+    </table>
+</div>
+<h1>Interfaces</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>MAC Address</th>
+            <th>IP Address</th>
+            <th>Netmask</th>
+            <th>MTU</th>
+        </tr>
+        <tr>
+        <tr th:each ="intf : ${ipHost.ipInterfaces}">
+            <td th:utext="${intf.name}">...</td>
+            <td th:utext="${intf.macAddress}">...</td>
+            <td th:utext="(${intf.ipAddress} == null) ? '' : ${intf.ipAddress.addr}">...</td>
+            <td th:utext="(${intf.ipAddress} == null) ? '' : ${intf.ipAddress.netmask}">...</td>
+            <td th:utext="${intf.mtu}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
